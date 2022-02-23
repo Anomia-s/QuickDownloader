@@ -27,13 +27,13 @@
           onclick="downloadVideo()">Download</button>
       </div>
 
-      <p class=" font-bold">Video download progress: <span class="font-mono bg-gray-200 p-1"
-          id="downloadProgressTwo"></span></p>
+      <p class=" font-bold">Video download progress: <span class="font-mono text-black bg-gray-200 p-1"
+          id="downloadProgressTwo">0%</span></p>
       <div class=" text-black bg-gray-200 mx-auto h-2.5 dark:bg-gray-700 m-2">
         <div id="downloadProgress" class="bg-blue-600 h-2.5 " style="width: 0%"></div>
       </div>
-      <p class=" font-bold text-white">Filename: <span class="font-mono text-black bg-gray-200 p-1" id="videoFilename"></span></p>
-      <ins class="text-green-500" id="done"></ins>
+      <p  class=" font-bold text-white">Filename: <span class="font-mono text-black bg-gray-200 p-1" id="videoFilename"></span></p>
+      <ins onclick="openVideosFolder()" class="hover:underline cursor-pointer text-green-500" id="done"></ins>
       <code id="info"></code>
       <code id="error"></code>
     </div>

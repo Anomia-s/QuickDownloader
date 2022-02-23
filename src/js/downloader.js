@@ -10,6 +10,11 @@ const finishElement = document.querySelector("#done");
 const errorElement = document.querySelector("#error");
 const videoName = document.querySelector("#videoFilename");
 
+const openVideosFolder = () => {
+  const {shell} = require('electron') // deconstructing assignment
+  shell.openPath(__dirname + '\\..\\downloads')
+}
+
 const downloadVideo = async () => {
   const videoURL = document.querySelector("#url").value;
   const videoFileName = document.querySelector("#fileName").value;
@@ -40,7 +45,7 @@ const downloadVideo = async () => {
     .pipe(
       fs.createWriteStream(`./downloads/${fileName}.mp4`)
         .on("finish", () => {
-          finishElement.textContent = `Video ${fileName}.mp4 downloaded!`;
+          finishElement.textContent = `${__dirname}/${fileName}.mp4 downloaded!`;
           downloadProgressElementTwo.textContent = "0%";
           downloadProgressElement.style.width = "0%";
         })
