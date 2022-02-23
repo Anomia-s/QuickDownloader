@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>QuickDownload - A blazingly fast music downloader for YouTube</title>
+</head>
+
+<body>
+  <div class="text-center bg-zinc-900 justify-center items-center h-screen w-screen flex mx-auto">
+    <div class="text-white">
+      <h1 class=" text-3xl  font-bold">QuickDownloader</h1>
+      <div class="mx-auto  p-2">
+
+
+        <input
+          class="p-1 m-2 text-2xl font-mono focus:ring text-black ring-blue-500 rounded transition-all duration-300 border shadow-inner outline-none"
+          type="text" id="url" placeholder="YouTube URL" />
+        <br>
+        <input
+          class="p-1 m-2  focus:ring font-mono rounded text-black transition-all duration-300 ring-blue-500 text-2xl border shadow-inner outline-none"
+          type="text" id="fileName" placeholder="Filename" />
+        <br>
+        <button class="p-2 bg-black text-white focus:outline-none hover:bg-gray-700 transition-all duration-500"
+          onclick="downloadVideo()">Download</button>
+      </div>
+
+      <p class=" font-bold">Video download progress: <span class="font-mono bg-gray-200 p-1"
+          id="downloadProgressTwo"></span></p>
+      <div class=" text-black bg-gray-200 mx-auto h-2.5 dark:bg-gray-700 m-2">
+        <div id="downloadProgress" class="bg-blue-600 h-2.5 " style="width: 0%"></div>
+      </div>
+      <p class=" font-bold text-white">Filename: <span class="font-mono text-black bg-gray-200 p-1" id="videoFilename"></span></p>
+      <ins class="text-green-500" id="done"></ins>
+      <code id="info"></code>
+      <code id="error"></code>
+    </div>
+  </div>
+
+  <script src="js/downloader.js"></script>
+</body>
+
+</html>
