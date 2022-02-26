@@ -1,6 +1,14 @@
+// FIXME: Fix songs not downloading the folder.
+// TODO: Add quality selection
+// TODO: Add folder selection
+// TODO: Add list downloading
+// TODO: Better code lol
+
+
 const fs = require("fs");
 const ytdl = require("ytdl-core");
 const progress = require("progress-stream");
+const path = require("path");
 const { nanoid } = require("nanoid");
 
 const downloadProgressElement = document.querySelector("#downloadProgress");
@@ -11,8 +19,8 @@ const errorElement = document.querySelector("#error");
 const videoName = document.querySelector("#videoFilename");
 
 const openVideosFolder = () => {
-  const {shell} = require('electron') // deconstructing assignment
-  shell.openPath(__dirname + '\\..\\downloads')
+  const { shell } = require('electron');
+  shell.openPath(path.join(__dirname + '\\..\\downloads'));
 }
 
 const downloadVideo = async () => {
@@ -23,7 +31,7 @@ const downloadVideo = async () => {
     errorElement.textContent = "No Video URL!";
   }
 
-  if(!fs.existsSync('./downloads'))
+  if (!fs.existsSync('./downloads'))
     fs.mkdirSync('./downloads');
 
   const fileName = videoFileName ? videoFileName : nanoid(20);
@@ -39,11 +47,10 @@ const downloadVideo = async () => {
     downloadProgressElementTwo.textContent = `${progress.percentage}%`;
     downloadProgressElement.style.width = `${progress.percentage}%`;
   });
-
-  ytdl(videoURL)
+  ytdl(videoURL, {quality: 'highest'})
     .pipe(progressDownload)
     .pipe(
-      fs.createWriteStream(`./downloads/${fileName}.mp4`)
+      fs.createWriteStream(path.join(__dirname + `\\..\\downloads\\${fileName}.mp4`))
         .on("finish", () => {
           finishElement.textContent = `${__dirname}/${fileName}.mp4 downloaded!`;
           downloadProgressElementTwo.textContent = "0%";
