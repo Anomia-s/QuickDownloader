@@ -39,7 +39,8 @@ const downloadVideo = async () => {
 
   const data = await ytdl.getBasicInfo(videoURL);
   const progressDownload = progress({
-    length: parseInt(data.formats[0].contentLength),
+    
+    length: parseInt(data.formats[data.formats.length - 1].contentLength),
   });
 
   progressDownload.on("progress", function (progress) {
