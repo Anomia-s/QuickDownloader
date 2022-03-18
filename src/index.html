@@ -9,7 +9,6 @@
   </head>
 
   <body>
-    <p id="no-connection" style="display: none;">No Internet connection</p>
     <div class="text-center bg-zinc-900 justify-center items-center h-screen w-screen flex mx-auto">
       <div class="text-white">
         <h1 class="text-3xl font-bold">QuickDownloader</h1>
@@ -64,13 +63,5 @@
     </div>
 
     <script src="js/downloader.js"></script>
-
-    <script>
-      const noConnection = document.getElementById("no-connection")
-
-      if (navigator.onLine == false) {
-        noConnection.style.display = ""
-      }
-    </script>
   </body>
 </html>

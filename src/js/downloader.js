@@ -83,6 +83,7 @@ function logError(errorContent) {
   errorElement.textContent = errorContent
   infoElement.style.display = "none"
   finishElement.style.display = "none"
+  errorElement.style.display = ""
 
   downloadQueue.shift()
 }
@@ -113,13 +114,10 @@ const downloadVideo = async (queueInfo, callback) => {
   if (!fs.existsSync('./downloads'))
     fs.mkdirSync('./downloads');
 
-  let data
 
-  try {
-    data = await ytdl.getBasicInfo(videoURL);
-  } catch(err) {
-
-    logError(err.message)
+  let data = await ytdl.getBasicInfo(videoURL).catch((err) => logError(err.message))
+  
+  if (data == undefined) {
     return
   }
 
@@ -205,19 +203,6 @@ function downloadComplete() {
     downloadProgressElement.style.backgroundColor = "#43e058"
 
     updateQueueCount()
-    
-    /*
-    const notificationPopup = new Notification("Task completed!", {
-      body: "Successfully downloaded all video in queue! Click to see the video in explorer.",
-      tag: ["youtube"],
-     })
-   
-     infoElement.textContent = "Successfully downloaded all video in queue!"
-     
-     notificationPopup.onclick = () => {
-       openVideosFolder()
-     }
-     */
 
   }
 }
