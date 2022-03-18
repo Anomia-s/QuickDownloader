@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require("electron");
+const electronRemote = require("@electron/remote/main")
 const path = require("path");
 
 if (require("electron-squirrel-startup")) {
@@ -9,7 +10,7 @@ if (require("electron-squirrel-startup")) {
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 760,
-    height: 450,
+    height: 500,
     resizable: false,
     titleBarStyle: 'hiddenInset',
     icon: __dirname + '/main.ico',
@@ -24,6 +25,10 @@ const createWindow = () => {
       webviewTag: true, //for webView
     },
   });
+
+  electronRemote.initialize()
+
+  electronRemote.enable(mainWindow.webContents)
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
